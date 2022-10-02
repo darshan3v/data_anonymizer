@@ -11,7 +11,7 @@ Download python 3, exact version is python 3.10
 ```powershell
 git clone https://github.com/darshan3v/DataAnonymizer.git
 
-cd DataAnonymizer
+cd data_anonymizer
 
 pip install -r requirements.txt
 
