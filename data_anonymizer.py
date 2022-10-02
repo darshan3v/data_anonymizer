@@ -1,4 +1,3 @@
-from threading import local
 from presidio_analyzer import AnalyzerEngine
 from presidio_analyzer.nlp_engine import NlpEngineProvider
 from presidio_anonymizer import AnonymizerEngine
@@ -13,7 +12,7 @@ import wget
 import pandas
 
 import fasttext
-from googletrans import Translator
+from google_trans_new import google_translator
 
 spacy_supported_web_langs = ['en','zh']
 spacy_supported_news_langs = ['ca', 'nl', 'el', 'it', 'hr', 'fi', 'es', 'sv', 'uk', 'de', 'ja', 'ko', 'da', 'fr', 'lt', 'mk', 'nb', 'pl', 'pt', 'ru', 'ro']
@@ -88,7 +87,7 @@ def anonymize_pii_data(csv_data):
 
     lang_predictor = LanguageIdentification()
 
-    translator = Translator()
+    translator = google_translator()
 
     fake_operators_generic = {
                         "PERSON": OperatorConfig("replace", {"new_value": "<PERSON>"}),
@@ -113,6 +112,7 @@ def anonymize_pii_data(csv_data):
 
     lang = ''
     text_to_analyze = ''
+    response = ''
     analyzer_results = ''
     anonymized_results = ''
     chat_data = ['']*len(csv_data['text'])
@@ -134,7 +134,11 @@ def anonymize_pii_data(csv_data):
                 web_langs = [lang]
                 news_langs = []
             else:
-                text_to_analyze = translator.translate(chat_snippet).text
+                # google transalte api is to be added
+                # response = translator.translate(chat_snippet)
+                chat_data[index] = chat_snippet
+                continue
+                text_to_analyze = response.text
                 web_langs = ['en']
                 news_langs = []
                 lang = 'en'
