@@ -9,7 +9,7 @@ Download python 3, exact version is python 3.10
 ### Execute these steps to setup environment
 
 ```powershell
-git clone https://github.com/darshan3v/DataAnonymizer.git
+git clone https://github.com/darshan3v/data_anonymizer.git
 
 cd data_anonymizer
 
