@@ -4,3 +4,4 @@ lid.176.bin
 install_helper.sh
 Dockerfile
 .dockerignore
+anonymised-chat.csv
