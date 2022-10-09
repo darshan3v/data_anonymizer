@@ -87,7 +87,7 @@ def anonymize_pii_data(csv_data):
 
     lang_predictor = LanguageIdentification()
 
-    translator = google_translator()
+    # translator = google_translator()
 
     fake_operators_generic = {
                         "PERSON": OperatorConfig("replace", {"new_value": "<PERSON>"}),
@@ -119,9 +119,9 @@ def anonymize_pii_data(csv_data):
 
     for index,chat_snippet in enumerate(csv_data['text']):
 
-        text_to_analyze = chat_snippet
+        text_to_analyze = chat_snippet.replace("\n"," ")
 
-        (lang,_) = lang_predictor.predict_lang(chat_snippet)
+        (lang,_) = lang_predictor.predict_lang(text_to_analyze)
         lang = lang[0][9:]  # removing __label__ frm str
 
         if prev_lang != lang:
